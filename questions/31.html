@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farr's Physics Quiz - Chapter 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a; /* Black background */
+            color: #e0e0e0; /* Light gray text */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .quiz-container {
+            background-color: #2c2c2c; /* Slightly lighter dark */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Soft shadow */
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #f0f0f0;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .question {
+            background-color: #3a3a3a; /* Even lighter dark for questions */
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Softer shadow */
+        }
+
+        .question p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: #f0f0f0;
+        }
+
+        .question input[type="radio"] {
+            display: none; /* Hide default radio button */
+        }
+
+        .question label {
+            display: inline-block;
+            background-color: #4a4a4a; /* Button background */
+            color: #f0f0f0;
+            padding: 10px 18px;
+            margin-right: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: 1px solid #555;
+        }
+
+        .question label:hover {
+            background-color: #5a5a5a; /* Darker hover */
+            transform: translateY(-2px);
+        }
+
+        .question input[type="radio"]:checked + label {
+            background-color: #6a6a6a; /* Selected state */
+            border-color: #999;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: none; /* Hidden by default */
+        }
+
+        .feedback.correct {
+            background-color: #28a745; /* Green */
+            color: #ffffff;
+        }
+
+        .feedback.incorrect {
+            background-color: #dc3545; /* Red */
+            color: #ffffff;
+        }
+
+        .feedback.info {
+            background-color: #007bff; /* Blue */
+            color: #ffffff;
+        }
+
+        details {
+            margin-top: 20px;
+            background-color: #333333; /* Darker background for details */
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #444444;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #99ccff; /* Light blue for summary */
+            font-size: 1em;
+        }
+
+        details p {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #c0c0c0;
+        }
+
+        .citation {
+            font-size: 0.85em;
+            font-style: italic;
+            color: #a0a0a0;
+        }
+
+        .user-result.correct {
+            color: #28a745; /* Green */
+        }
+        .user-result.incorrect {
+            color: #dc3545; /* Red */
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button-container button {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3; /* Darker blue hover */
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Farr's Physics for Medical Imaging: Chapter 1 Quiz</h1>
+        <p>Test your knowledge on the fundamental concepts of Matter and Radiation as presented in Chapter 1 of *Farr's Physics for Medical Imaging, 3rd edition*. Select True or False for each statement. Feedback and explanations will appear immediately upon selection.</p>
+
+        <form id="quizForm">
+            <div class="question" data-correct-answer="True" data-question-id="q1">
+                <p>1. The nucleus of an atom contributes the majority of its mass and is composed of protons and neutrons.</p>
+                <input type="radio" id="q1_true" name="q1" value="True">
+                <label for="q1_true">True</label>
+                <input type="radio" id="q1_false" name="q1" value="False">
+                <label for="q1_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        The nucleus, composed of nucleons (protons and neutrons), accounts for the majority of the atom's mass. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q2">
+                <p>2. Neutrons have a relative mass of 1 and a +1 charge, while protons have a relative mass of 1 and 0 charge.</p>
+                <input type="radio" id="q2_true" name="q2" value="True">
+                <label for="q2_true">True</label>
+                <input type="radio" id="q2_false" name="q2" value="False">
+                <label for="q2_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Protons have a relative mass of 1 with a +1 charge, while neutrons have a relative mass of 1 with 0 charge. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q3">
+                <p>3. Isotopes of an atom have the same atomic number but a different number of neutrons.</p>
+                <input type="radio" id="q3_true" name="q3" value="True">
+                <label for="q3_true">True</label>
+                <input type="radio" id="q3_false" name="q3" value="False">
+                <label for="q3_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Isotopes are atoms with the same atomic number (number of protons) but a different number of neutrons. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q4">
+                <p>4. The outermost electron shell, known as the valence shell, can hold up to 18 electrons.</p>
+                <input type="radio" id="q4_true" name="q4" value="True">
+                <label for="q4_true">True</label>
+                <input type="radio" id="q4_false" name="q4" value="False">
+                <label for="q4_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        The valence shell can only ever have eight electrons within it, forming a complete outer shell octet. The M-shell can hold 18 electrons, but it's not necessarily the valence shell. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q5">
+                <p>5. When an inner shell electron returns to its original shell after being excited, the excess energy is re-emitted as a photon, yielding characteristic X-rays.</p>
+                <input type="radio" id="q5_true" name="q5" value="True">
+                <label for="q5_true">True</label>
+                <input type="radio" id="q5_false" name="q5" value="False">
+                <label for="q5_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        This process, where an excited inner shell electron returns to its original shell and re-emits excess energy as a photon, produces characteristic X-rays. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q6">
+                <p>6. All forms of electromagnetic (EM) radiation travel at different velocities in a vacuum.</p>
+                <input type="radio" id="q6_true" name="q6" value="True">
+                <label for="q6_true">True</label>
+                <input type="radio" id="q6_false" name="q6" value="False">
+                <label for="q6_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        All forms of electromagnetic (EM) radiation travel at the same velocity as light when in vacuo (2.98 × 10⁸ m/s). <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q7">
+                <p>7. Photon energy is inversely proportional to wavelength.</p>
+                <input type="radio" id="q7_true" name="q7" value="True">
+                <label for="q7_true">True</label>
+                <input type="radio" id="q7_false" name="q7" value="False">
+                <label for="q7_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        The relationship E = hc/λ (where h is Planck’s constant and c is velocity) shows that photon energy (E) is inversely proportional to wavelength (λ). <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q8">
+                <p>8. X-rays are produced when fast-moving electrons interact with a metal target, converting approximately 99% of their kinetic energy into X-rays and 1% into heat.</p>
+                <input type="radio" id="q8_true" name="q8" value="True">
+                <label for="q8_true">True</label>
+                <input type="radio" id="q8_false" name="q8" value="False">
+                <label for="q8_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        When fast-moving electrons interact with a metal target, approximately 1% of their kinetic energy is converted to X-rays and around 99% is converted to heat. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q9">
+                <p>9. The process of thermionic emission involves free electrons overcoming the positive attraction of metal anions after a tungsten filament is heated until incandescent.</p>
+                <input type="radio" id="q9_true" name="q9" value="True">
+                <label for="q9_true">True</label>
+                <input type="radio" id="q9_false" name="q9" value="False">
+                <label for="q9_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Heating the tungsten filament in the cathode until incandescent enables thermionic emission, allowing free electrons to escape the metal's attraction. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q10">
+                <p>10. An increased kilovoltage (kV) setting in an X-ray tube increases only the quantity of photons produced, not their effective energy.</p>
+                <input type="radio" id="q10_true" name="q10" value="True">
+                <label for="q10_true">True</label>
+                <input type="radio" id="q10_false" name="q10" value="False">
+                <label for="q10_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Increased kV shifts the X-ray spectrum upwards and to the right, meaning it increases both the maximum and effective energy, as well as the total number of photons. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q11">
+                <p>11. Bremsstrahlung (braking radiation) accounts for 80% of produced X-rays and yields a continuous spectrum of photon energies.</p>
+                <input type="radio" id="q11_true" name="q11" value="True">
+                <label for="q11_true">True</label>
+                <input type="radio" id="q11_false" name="q11" value="False">
+                <label for="q11_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Bremsstrahlung is produced when a bombarding electron is deflected by the nucleus, losing energy as radiation, and it generates a continuous spectrum of X-ray photon energies. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q12">
+                <p>12. Filtration removes higher-energy photons before they reach the patient, primarily contributing to dose reduction.</p>
+                <input type="radio" id="q12_true" name="q12" value="True">
+                <label for="q12_true">True</label>
+                <input type="radio" id="q12_false" name="q12" value="False">
+                <label for="q12_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Filtration involves the removal of *lower-energy* photons, as these mostly contribute to patient dose with little impact on image formation. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q13">
+                <p>13. Attenuation refers to the reduction in the number of photons in a beam after it has passed through material, due to both absorption and scatter.</p>
+                <input type="radio" id="q13_true" name="q13" value="True">
+                <label for="q13_true">True</label>
+                <input type="radio" id="q13_false" name="q13" value="False">
+                <label for="q13_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Attenuation is the overall process where fewer photons are present in a beam after passing through material due to absorption and scatter. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q14">
+                <p>14. The half-value layer (HVL) is the thickness of a given material that will double the intensity of a narrow beam of X-radiation.</p>
+                <input type="radio" id="q14_true" name="q14" value="True">
+                <label for="q14_true">True</label>
+                <input type="radio" id="q14_false" name="q14" value="False">
+                <label for="q14_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        The HVL is the thickness of a material that will *halve* the intensity of a narrow beam of X-radiation. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q15">
+                <p>15. The probability of photoelectric absorption decreases with increased incident photon energy.</p>
+                <input type="radio" id="q15_true" name="q15" value="True">
+                <label for="q15_true">True</label>
+                <input type="radio" id="q15_false" name="q15" value="False">
+                <label for="q15_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Photoelectric absorption probability decreases with increased incident photon energy (1/E³) and increases with the atomic number of the material (Z³). <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q16">
+                <p>16. In most radiology applications, photon energies are typically greater than 1 MeV, making pair production a significant interaction.</p>
+                <input type="radio" id="q16_true" name="q16" value="True">
+                <label for="q16_true">True</label>
+                <input type="radio" id="q16_false" name="q16" value="False">
+                <label for="q16_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        In most radiology applications, photon energies are less than 1 MeV, so only photoelectric and Compton effects are primarily considered. Pair production predominates at much higher energies. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q17">
+                <p>17. Luminescence is the process where a material absorbs energy and re-emits it as visible photons, occurring in relatively cool materials.</p>
+                <input type="radio" id="q17_true" name="q17" value="True">
+                <label for="q17_true">True</label>
+                <input type="radio" id="q17_false" name="q17" value="False">
+                <label for="q17_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Luminescence is the absorption and re-emission of energy as visible photons in cool materials, distinct from incandescence. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q18">
+                <p>18. Fluorescence involves the delayed emission of photons, facilitated by electron traps from impurities in compounds.</p>
+                <input type="radio" id="q18_true" name="q18" value="True">
+                <label for="q18_true">True</label>
+                <input type="radio" id="q18_false" name="q18" value="False">
+                <label for="q18_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        Fluorescence involves nearly instantaneous photon emission (10⁻¹⁰ to 10⁻⁷ s). Phosphorescence involves delayed emission, often due to electron traps from impurities. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="True" data-question-id="q19">
+                <p>19. Technetium-99m (<sup>99m</sup>Tc) is ideally suited as an imaging radionuclide because it decays via pure gamma emission (140 keV gamma rays).</p>
+                <input type="radio" id="q19_true" name="q19" value="True">
+                <label for="q19_true">True</label>
+                <input type="radio" id="q19_false" name="q19" value="False">
+                <label for="q19_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>True</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        <sup>99m</sup>Tc's pure gamma emission contributes entirely to image formation, making it ideal for imaging without unnecessary particulate dose. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+
+            <div class="question" data-correct-answer="False" data-question-id="q20">
+                <p>20. The effective half-life of a radiopharmaceutical in the body is always longer than its physical or biological half-lives.</p>
+                <input type="radio" id="q20_true" name="q20" value="True">
+                <label for="q20_true">True</label>
+                <input type="radio" id="q20_false" name="q20" value="False">
+                <label for="q20_false">False</label>
+                <div class="feedback"></div>
+                <details>
+                    <summary>Show Explanation and Correct Answer</summary>
+                    <p>
+                        Correct Answer: <strong>False</strong><br>
+                        You were: <span class="user-result"></span><br>
+                        The effective half-life (t<sub>eff</sub>) will always be shorter than either the physical (t<sub>phys</sub>) or biological (t<sub>biol</sub>) half-lives because both processes occur simultaneously, as defined by 1/t<sub>eff</sub> = 1/t<sub>phys</sub> + 1/t<sub>biol</sub>. <span class="citation"></span>
+                    </p>
+                </details>
+            </div>
+        </form>
+    </div>
+
+    <div class="button-container">
+        <button id="resetQuiz">Reset Quiz</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizForm = document.getElementById('quizForm');
+            const questions = quizForm.querySelectorAll('.question');
+            const resetButton = document.getElementById('resetQuiz');
+
+            questions.forEach(question => {
+                const radios = question.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        const selectedValue = event.target.value;
+                        const correctAnswer = question.dataset.correctAnswer;
+                        const feedbackDiv = question.querySelector('.feedback');
+                        const userResultSpan = question.querySelector('.user-result');
+                        const detailsElement = question.querySelector('details');
+
+                        // Show feedback
+                        feedbackDiv.style.display = 'block';
+                        if (selectedValue === correctAnswer) {
+                            feedbackDiv.textContent = "Correct!";
+                            feedbackDiv.className = 'feedback correct';
+                            userResultSpan.textContent = 'Right';
+                            userResultSpan.className = 'user-result correct';
+                        } else {
+                            feedbackDiv.textContent = "Incorrect.";
+                            feedbackDiv.className = 'feedback incorrect';
+                            userResultSpan.textContent = 'Wrong';
+                            userResultSpan.className = 'user-result incorrect';
+                        }
+
+                        // Expand explanation
+                        detailsElement.open = true;
+
+                        // Disable radio buttons for this question
+                        radios.forEach(r => r.disabled = true);
+                    });
+                });
+            });
+
+            resetButton.addEventListener('click', () => {
+                questions.forEach(question => {
+                    const radios = question.querySelectorAll('input[type="radio"]');
+                    const feedbackDiv = question.querySelector('.feedback');
+                    const userResultSpan = question.querySelector('.user-result');
+                    const detailsElement = question.querySelector('details');
+
+                    // Uncheck radio buttons
+                    radios.forEach(radio => {
+                        radio.checked = false;
+                        radio.disabled = false; // Re-enable
+                    });
+
+                    // Hide feedback
+                    feedbackDiv.style.display = 'none';
+                    feedbackDiv.textContent = '';
+                    feedbackDiv.className = 'feedback'; // Reset class
+
+                    // Reset user result span
+                    userResultSpan.textContent = '';
+                    userResultSpan.className = 'user-result';
+
+                    // Close explanation
+                    detailsElement.open = false;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
